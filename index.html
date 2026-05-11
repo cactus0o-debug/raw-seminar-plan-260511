@@ -159,12 +159,22 @@
     }
 
     .concept-card {
-      background: var(--gray-dark);
+      background: var(--black);
       padding: 48px 40px;
+      transition: background 0.25s ease, color 0.25s ease;
+      cursor: default;
     }
 
     .concept-card.highlight {
+      background: var(--black);
+    }
+
+    .concept-card:hover {
       background: var(--red);
+    }
+
+    .concept-card:hover p {
+      color: rgba(255,255,255,.9);
     }
 
     .concept-icon {
@@ -451,10 +461,30 @@
       font-size: 15px;
     }
 
+    .speaker-desc {
+      font-size: 15px;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
     .speaker-history li::before {
       content: '→';
       color: var(--red);
       flex-shrink: 0;
+    }
+
+    .speaker-history a {
+      color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .speaker-history a:hover {
+      opacity: 1;
+      color: var(--red-light);
     }
 
     /* ── FOOTER ── */
@@ -513,17 +543,15 @@
      SPEAKER
 ════════════════════════════ -->
 <div class="speaker-wrap">
-  <div class="speaker-photo">👤</div>
+  <div class="speaker-photo"><img src="data:image/jpeg;base64,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" alt="홍유리" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" /></div>
   <div>
     <div class="speaker-label">Speaker</div>
     <div class="speaker-name">홍유리</div>
     <div class="speaker-title">쇼핑몰 창업 & 이커머스 성장 전략가</div>
+    <p class="speaker-desc">포들, 더잠 그리고 롤리, 지성아뜰리에까지<br>계속해서 시작하고, 발걸음을 만들어내는 사람</p>
     <ul class="speaker-history">
-      <li>무자본 0원으로 첫 쇼핑몰 론칭 → 월 매출 1억 달성</li>
-      <li>패션 · 뷰티 · 라이프스타일 3개 브랜드 동시 운영 경험</li>
-      <li>이커머스 스타트업 멘토링 200+ 케이스</li>
-      <li>SNS 마케팅 · 광고 집행 · CS 시스템 직접 구축</li>
-      <li>"살아있는 현장 언어"로 전달하는 날것의 인사이트</li>
+      <li>Founder of <a href="https://www.instagram.com/rolly.wellness/" target="_blank">@rolly.wellness</a> &nbsp;<a href="https://www.instagram.com/jisung.atelier/" target="_blank">@jisung.atelier</a></li>
+      <li>Ex-founder of <a href="https://www.instagram.com/podl.official/" target="_blank">@podl.official</a> &nbsp;<a href="https://www.instagram.com/thezam.official/" target="_blank">@thezam.official</a></li>
     </ul>
   </div>
 </div>
@@ -534,7 +562,7 @@
      01 CONCEPT
 ════════════════════════════ -->
 <section>
-  <div class="section-label">01 — Concept</div>
+  <div class="section-label">01 — Introduce</div>
   <h2 class="section-title">포장 없이, 날것 그대로.<br>진짜 쇼핑몰 이야기</h2>
 
   <div class="concept-grid">
@@ -543,7 +571,7 @@
       <h3>날것(Raw)의 철학</h3>
       <p>성공 사례만 나열하는 강의가 아닙니다. 실패한 광고비, 망한 상품 기획, 반품 폭탄의 원인까지 — 가감 없이 꺼내놓는 현장 언어로 진행합니다.</p>
     </div>
-    <div class="concept-card highlight">
+    <div class="concept-card">
       <div class="concept-icon">⚡</div>
       <h3>실전 중심 커리큘럼</h3>
       <p>이론서에 없는 매출 공식. 오늘 들은 내용을 내일 바로 써먹을 수 있는 액션 플랜 중심으로 설계된 밀도 높은 프로그램입니다.</p>
