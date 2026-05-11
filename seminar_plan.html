@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>날것 세미나 기획안</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --red: #e63946;
+      --red-light: #ff6b6b;
+      --gray-dark: #1c1c1c;
+      --gray-mid: #2e2e2e;
+      --gray-light: #888;
+      --accent: #f4a261;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(230,57,70,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 2px;
+      margin-bottom: 36px;
+    }
+
+    .hero-title {
+      font-size: clamp(52px, 10vw, 110px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--red);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      color: var(--gray-light);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      word-break: keep-all;
+    }
+
+    .hero-sub-highlight {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item {
+      text-align: center;
+    }
+
+    .hero-meta-item .label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gray-light);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .hero-meta-item .value {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .divider-line {
+      width: 1px;
+      height: 60px;
+      background: var(--gray-mid);
+      align-self: center;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 60px;
+      word-break: keep-all;
+    }
+
+    /* ── FULL-WIDTH SEPARATORS ── */
+    .full-sep {
+      border: none;
+      border-top: 1px solid var(--gray-mid);
+    }
+
+    /* ── 01 CONCEPT ── */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--gray-mid);
+      border: 1px solid var(--gray-mid);
+    }
+
+    .concept-card {
+      background: var(--black);
+      padding: 48px 40px;
+      transition: background 0.25s ease, color 0.25s ease;
+      cursor: default;
+    }
+
+    .concept-card.highlight {
+      background: var(--black);
+    }
+
+    .concept-card:hover {
+      background: var(--red);
+    }
+
+    .concept-card:hover p {
+      color: rgba(255,255,255,.9);
+    }
+
+    .concept-icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .concept-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .concept-card p {
+      font-size: 15px;
+      color: rgba(255,255,255,.75);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .concept-card.highlight p {
+      color: rgba(255,255,255,.9);
+    }
+
+    .concept-keyword-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+
+    .kw {
+      border: 1px solid var(--gray-mid);
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 2px;
+      color: var(--gray-light);
+    }
+
+    .kw.active {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* ── 02 SESSION ── */
+    .session-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .session-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: start;
+      gap: 32px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+
+    .session-item:first-child {
+      border-top: 1px solid var(--gray-mid);
+    }
+
+    .session-num {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--gray-mid);
+      line-height: 1;
+    }
+
+    .session-body h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .session-body .desc {
+      font-size: 15px;
+      color: var(--gray-light);
+      line-height: 1.8;
+      word-break: keep-all;
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--gray-mid);
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      color: var(--gray-light);
+    }
+
+    .tag.red {
+      background: rgba(230,57,70,.15);
+      color: var(--red-light);
+    }
+
+    .session-time {
+      font-size: 13px;
+      color: var(--gray-light);
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── 03 VALUE ── */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--gray-mid);
+      border: 1px solid var(--gray-mid);
+    }
+
+    .value-card {
+      background: var(--gray-dark);
+      padding: 48px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      font-size: 120px;
+      font-weight: 900;
+      color: rgba(255,255,255,.03);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .value-icon {
+      width: 48px;
+      height: 4px;
+      background: var(--red);
+      margin-bottom: 28px;
+    }
+
+    .value-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .value-card p {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.9;
+      word-break: keep-all;
+    }
+
+    .value-stat {
+      margin-top: 28px;
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--red-light);
+      line-height: 1;
+    }
+
+    .value-stat-label {
+      font-size: 13px;
+      color: var(--gray-light);
+      margin-top: 4px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 120px 24px;
+      background: linear-gradient(180deg, var(--black) 0%, #110507 100%);
+    }
+
+    .cta-section .section-label { text-align: center; }
+
+    .cta-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+      word-break: keep-all;
+    }
+
+    .cta-desc {
+      font-size: 17px;
+      color: var(--gray-light);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      word-break: keep-all;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 18px 48px;
+      border-radius: 2px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: background .2s;
+    }
+
+    .btn:hover { background: var(--red-light); }
+
+    .cta-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--gray-light);
+    }
+
+    /* ── SPEAKER ── */
+    .speaker-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .speaker-photo {
+      aspect-ratio: 3/4;
+      background: var(--gray-mid);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speaker-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(transparent, rgba(230,57,70,.3));
+    }
+
+    .speaker-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .speaker-name {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .speaker-title {
+      font-size: 16px;
+      color: var(--gray-light);
+      margin-bottom: 36px;
+    }
+
+    .speaker-history {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .speaker-history li {
+      display: flex;
+      gap: 16px;
+      font-size: 15px;
+    }
+
+    .speaker-desc {
+      font-size: 15px;
+      color: var(--gray-light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .speaker-history li::before {
+      content: '→';
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .speaker-history a {
+      color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .speaker-history a:hover {
+      opacity: 1;
+      color: var(--red-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--gray-mid);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      color: var(--gray-light);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .concept-grid { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
+      .speaker-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .session-item { grid-template-columns: 48px 1fr; }
+      .session-time { grid-column: 2; }
+      .session-num { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     HERO
+════════════════════════════ -->
+<div class="hero">
+  <span class="hero-tag">Seminar Proposal 2026</span>
+  <h1 class="hero-title">날것<span>.</span><br>세미나</h1>
+  <p class="hero-subtitle">
+    <span class="hero-sub-highlight">0에서 매출까지 —</span><br>
+    홍유리가 전하는 실전 쇼핑몰 인사이트
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="label">대상</div>
+      <div class="value">이커머스 운영자 · 예비 창업자</div>
+    </div>
+    <div class="divider-line"></div>
+    <div class="hero-meta-item">
+      <div class="label">형식</div>
+      <div class="value">오프라인 집중 세미나</div>
+    </div>
+    <div class="divider-line"></div>
+    <div class="hero-meta-item">
+      <div class="label">규모</div>
+      <div class="value">소수 정예 50인 이내</div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-sep" />
+
+<!-- ════════════════════════════
+     SPEAKER
+════════════════════════════ -->
+<div class="speaker-wrap">
+  <div class="speaker-photo"><img src="data:image/jpeg;base64,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" alt="홍유리" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" /></div>
+  <div>
+    <div class="speaker-label">Speaker</div>
+    <div class="speaker-name">홍유리</div>
+    <div class="speaker-title">쇼핑몰 창업 & 이커머스 성장 전략가</div>
+    <p class="speaker-desc">포들, 더잠 그리고 롤리, 지성아뜰리에까지<br>계속해서 시작하고, 발걸음을 만들어내는 사람</p>
+    <ul class="speaker-history">
+      <li>Founder of <a href="https://www.instagram.com/rolly.wellness/" target="_blank">@rolly.wellness</a> &nbsp;<a href="https://www.instagram.com/jisung.atelier/" target="_blank">@jisung.atelier</a></li>
+      <li>Ex-founder of <a href="https://www.instagram.com/podl.official/" target="_blank">@podl.official</a> &nbsp;<a href="https://www.instagram.com/thezam.official/" target="_blank">@thezam.official</a></li>
+    </ul>
+  </div>
+</div>
+
+<hr class="full-sep" />
+
+<!-- ════════════════════════════
+     01 CONCEPT
+════════════════════════════ -->
+<section>
+  <div class="section-label">01 — Introduce</div>
+  <h2 class="section-title">포장 없이, 날것 그대로.<br>진짜 쇼핑몰 이야기</h2>
+
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="concept-icon">🔥</div>
+      <h3>날것(Raw)의 철학</h3>
+      <p>성공 사례만 나열하는 강의가 아닙니다. 실패한 광고비, 망한 상품 기획, 반품 폭탄의 원인까지 — 가감 없이 꺼내놓는 현장 언어로 진행합니다.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">⚡</div>
+      <h3>실전 중심 커리큘럼</h3>
+      <p>이론서에 없는 매출 공식. 오늘 들은 내용을 내일 바로 써먹을 수 있는 액션 플랜 중심으로 설계된 밀도 높은 프로그램입니다.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">🎯</div>
+      <h3>타겟 명확화</h3>
+      <p>막연하게 "쇼핑몰 해볼까" 하는 분부터 정체 구간에서 다음 단계를 찾는 운영자까지 — 각자의 단계에 맞는 돌파구를 제시합니다.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">🤝</div>
+      <h3>소수 정예 네트워킹</h3>
+      <p>50인 이내 소규모 운영으로 질문 제한 없는 Q&A, 참가자 간 수평적 네트워킹이 가능한 밀착 환경을 보장합니다.</p>
+    </div>
+  </div>
+
+  <div class="concept-keyword-row">
+    <span class="kw active"># 날것의 현장성</span>
+    <span class="kw active"># 0→매출 로드맵</span>
+    <span class="kw active"># 실패를 말하는 용기</span>
+    <span class="kw"># 이커머스</span>
+    <span class="kw"># 쇼핑몰 창업</span>
+    <span class="kw"># 성장 전략</span>
+  </div>
+</section>
+
+<hr class="full-sep" />
+
+<!-- ════════════════════════════
+     02 SESSION
+════════════════════════════ -->
+<section>
+  <div class="section-label">02 — Session</div>
+  <h2 class="section-title">4개 세션,<br>총 120분 로드맵</h2>
+
+  <div class="session-list">
+
+    <div class="session-item">
+      <div class="session-num">01</div>
+      <div class="session-body">
+        <h3>오프닝 — 시작의 기술, 더잠·포들 그리고 롤리까지</h3>
+        <p class="desc">
+          세 개의 브랜드 론칭 경험으로 말하는, 신생 브랜드가 가장 먼저 할 것 vs 하지 말아야 할 것.
+          무료배송·가격 전에 선행되어야 할 브랜딩 작업, 그리고 실제 타임라인 공개 (런칭 D-day ~ 첫 매출).
+        </p>
+        <div class="tags">
+          <span class="tag red"># 브랜드 론칭</span>
+          <span class="tag"># 브랜딩 선행</span>
+          <span class="tag"># 실전 타임라인</span>
+          <span class="tag"># 할 것 vs 하지 말 것</span>
+        </div>
+      </div>
+      <div class="session-time">오프닝</div>
+    </div>
+
+    <div class="session-item">
+      <div class="session-num">02</div>
+      <div class="session-body">
+        <h3>메인 — 광고 없이 첫 매출 만들기</h3>
+        <p class="desc">
+          무자본으로 인플루언서를 섭외하는 실전 DM 스크립트 공개.
+          팔로워 수보다 중요한 것 — SNS · 커뮤니티 · 바이럴을 활용해 돈 없이 첫 매출을 만드는 법.
+        </p>
+        <div class="tags">
+          <span class="tag red"># 무자본 인플루언서</span>
+          <span class="tag"># DM 스크립트</span>
+          <span class="tag"># SNS/커뮤니티</span>
+          <span class="tag"># 바이럴</span>
+        </div>
+      </div>
+      <div class="session-time">메인 주제</div>
+    </div>
+
+    <div class="session-item">
+      <div class="session-num">03</div>
+      <div class="session-body">
+        <h3>심화 — 매출 10배 스케일업, 본격적인 매출에 필요한 것들</h3>
+        <p class="desc">
+          자사몰 운영 실무 (CS · 재고 · 광고 세팅 노하우) 총정리.
+          실제 사용 중인 AI 툴 소개 — 상세페이지 · 챗봇 · 광고 소재 제작까지.
+        </p>
+        <div class="tags">
+          <span class="tag red"># 자사몰 운영</span>
+          <span class="tag"># CS/재고/광고</span>
+          <span class="tag"># AI 툴 활용</span>
+          <span class="tag"># 스케일업</span>
+        </div>
+      </div>
+      <div class="session-time">심화 내용</div>
+    </div>
+
+    <div class="session-item">
+      <div class="session-num">04</div>
+      <div class="session-body">
+        <h3>클로징 — Live Q&A + 네트워킹</h3>
+        <p class="desc">
+          사전 질문을 취합해 선별 답변하는 라이브 Q&A.
+          명함 교환과 소규모 그룹 토크로 참가자 간 연결을 만드는 마무리 세션.
+        </p>
+        <div class="tags">
+          <span class="tag red"># Live Q&A</span>
+          <span class="tag"># 사전 질문</span>
+          <span class="tag"># 명함 교환</span>
+          <span class="tag"># 그룹 토크</span>
+        </div>
+      </div>
+      <div class="session-time">클로징</div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-sep" />
+
+<!-- ════════════════════════════
+     03 VALUE
+════════════════════════════ -->
+<section>
+  <div class="section-label">03 — Value</div>
+  <h2 class="section-title">이 세미나가 당신에게<br>줄 수 있는 것</h2>
+
+  <div class="value-grid">
+    <div class="value-card" data-num="1">
+      <div class="value-icon"></div>
+      <h3>검증된 실전 지식</h3>
+      <p>교과서가 아닌 실제 운영 경험에서 나온 정보. 홍유리가 직접 겪은 실패와 성공의 패턴을 압축해 전달합니다. 시행착오 비용을 줄이는 가장 빠른 방법입니다.</p>
+      <div class="value-stat">3년+</div>
+      <div class="value-stat-label">실전 운영 경험 압축 전달</div>
+    </div>
+    <div class="value-card" data-num="2">
+      <div class="value-icon"></div>
+      <h3>즉시 적용 가능한 액션</h3>
+      <p>세미나가 끝나면 내일 바로 실행할 수 있는 체크리스트와 템플릿을 제공합니다. "아, 좋은 말이었는데"로 끝나지 않는 실행력 중심 설계입니다.</p>
+      <div class="value-stat">100%</div>
+      <div class="value-stat-label">실행 기반 커리큘럼</div>
+    </div>
+    <div class="value-card" data-num="3">
+      <div class="value-icon"></div>
+      <h3>커뮤니티 & 지속 성장</h3>
+      <p>세미나 이후에도 이어지는 참가자 전용 채널. 비슷한 단계의 운영자들과 정보를 나누고, 혼자 못 풀었던 문제를 함께 해결하는 네트워크가 만들어집니다.</p>
+      <div class="value-stat">50명</div>
+      <div class="value-stat-label">소수 정예 밀착 네트워크</div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-sep" />
+
+<!-- ════════════════════════════
+     CTA
+════════════════════════════ -->
+<div class="cta-section">
+  <div class="section-label">참가 신청</div>
+  <h2 class="cta-title">포장 없는 진짜 이야기,<br>지금 만나러 오세요.</h2>
+  <p class="cta-desc">쇼핑몰 창업을 꿈꾸는 분, 지금 정체 구간에 있는 분 — 이 세미나는 당신을 위해 설계되었습니다.</p>
+  <a href="#" class="btn">사전 신청하기 →</a>
+  <p class="cta-note">* 50인 선착순 마감 · 신청 후 개별 안내 예정</p>
+</div>
+
+<!-- ════════════════════════════
+     FOOTER
+════════════════════════════ -->
+<footer>
+  <p>날것 세미나 — 0에서 매출까지, 홍유리의 실전 쇼핑몰 인사이트</p>
+  <p style="margin-top:8px; font-size:12px;">© 2026 날것 세미나. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
