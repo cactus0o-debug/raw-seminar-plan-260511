@@ -265,17 +265,33 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      margin-top: 16px;
     }
 
+    /* ── TAG 호버 효과 ── */
     .tag {
       background: var(--gray-mid);
       font-size: 12px;
       padding: 4px 12px;
       border-radius: 2px;
       color: var(--gray-light);
+      transition: background 0.2s ease, color 0.2s ease;
+      cursor: default;
+    }
+
+    .tag:hover {
+      background: rgba(230,57,70,.15);
+      color: var(--red-light);
     }
 
     .tag.red {
+      background: var(--gray-mid);
+      color: var(--gray-light);
+      transition: background 0.2s ease, color 0.2s ease;
+      cursor: default;
+    }
+
+    .tag.red:hover {
       background: rgba(230,57,70,.15);
       color: var(--red-light);
     }
@@ -576,7 +592,7 @@
       <div class="concept-icon">⚡</div>
       <h3>실전 중심 커리큘럼</h3>
       <p>이론서에 없는 매출 공식. </p>
-      </p>오늘 들은 내용을 내일 바로 써먹을 수 있는 액션 플랜 중심으로 설계된 밀도 높은 프로그램입니다.</p>
+      <p>오늘 들은 내용을 내일 바로 써먹을 수 있는 액션 플랜 중심으로 설계된 밀도 높은 프로그램입니다.</p>
     </div>
     <div class="concept-card">
       <div class="concept-icon">🎯</div>
@@ -615,12 +631,10 @@
       <div class="session-num">01</div>
       <div class="session-body">
         <h3>오프닝 — 시작의 기술, 더잠·포들 그리고 롤리까지</h3>
-        <p>
-          세 개의 브랜드 론칭 경험으로 말하는, 신생 브랜드가 가장 먼저 할 것 vs 하지 말아야 할 것.</p>
-          <p>무료배송·가격 전에 선행되어야 할 브랜딩 작업, 실제 타임라인을 공개합니다.
-        </p>
+        <p>세 개의 브랜드 론칭 경험으로 말하는, 신생 브랜드가 가장 먼저 할 것 vs 하지 말아야 할 것.</p>
+        <p>무료배송·가격 전에 선행되어야 할 브랜딩 작업, 실제 타임라인을 공개합니다.</p>
         <div class="tags">
-          <span class="tag red"># 브랜드 론칭</span>
+          <span class="tag"># 브랜드 론칭</span>
           <span class="tag"># 실전 타임라인</span>
           <span class="tag"># 할 것 vs 하지 말 것</span>
         </div>
@@ -632,12 +646,10 @@
       <div class="session-num">02</div>
       <div class="session-body">
         <h3>메인 — 매출 10배 마케팅 구조 만들기</h3>
-        <p>
-          인플루언서와 함께 성장하는 실전 DM 스크립트 공개.</p>
-          <p>팔로워 수보다 중요한 것 — SNS · 커뮤니티 · 바이럴을 활용해 돈 없이 첫 매출을 만드는 법.
-        </p>
+        <p>인플루언서와 함께 성장하는 실전 DM 스크립트 공개.</p>
+        <p>팔로워 수보다 중요한 것 — SNS · 커뮤니티 · 바이럴을 활용해 돈 없이 첫 매출을 만드는 법.</p>
         <div class="tags">
-          <span class="tag red"># 무자본 인플루언서</span>
+          <span class="tag"># 무자본 인플루언서</span>
           <span class="tag"># SNS/커뮤니티</span>
           <span class="tag"># 바이럴</span>
         </div>
@@ -649,12 +661,10 @@
       <div class="session-num">03</div>
       <div class="session-body">
         <h3>심화 — 매출 10배 스케일업, 본격적인 매출에 필요한 것들</h3>
-        <p>
-          자사몰 운영 실무 (CS · 재고 · 광고 세팅 노하우) 총정리.</p>
-          <p>실제 사용 중인 AI 툴 소개 — 상세페이지 · 챗봇 · 광고 소재 제작까지.
-        </p>
+        <p>자사몰 운영 실무 (CS · 재고 · 광고 세팅 노하우) 총정리.</p>
+        <p>실제 사용 중인 AI 툴 소개 — 상세페이지 · 챗봇 · 광고 소재 제작까지.</p>
         <div class="tags">
-          <span class="tag red"># CS/재고/광고</span>
+          <span class="tag"># CS/재고/광고</span>
           <span class="tag"># AI 툴 활용</span>
           <span class="tag"># 스케일업</span>
         </div>
@@ -666,12 +676,10 @@
       <div class="session-num">04</div>
       <div class="session-body">
         <h3>클로징 — Q&A + 네트워킹</h3>
-        <p>
-          사전 질문을 취합해 선별 답변하는 라이브 Q&A.</p>
-          <p>명함 교환과 소규모 그룹 토크로 참가자 간 연결을 만드는 네트워킹 세션.
-        </p>
+        <p>사전 질문을 취합해 선별 답변하는 라이브 Q&A.</p>
+        <p>명함 교환과 소규모 그룹 토크로 참가자 간 연결을 만드는 네트워킹 세션.</p>
         <div class="tags">
-          <span class="tag red"># Live Q&A</span>
+          <span class="tag"># Live Q&A</span>
           <span class="tag"># 사전 질문</span>
           <span class="tag"># 명함 교환</span>
         </div>
